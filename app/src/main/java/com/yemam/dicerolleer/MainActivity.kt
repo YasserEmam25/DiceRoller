@@ -17,16 +17,21 @@ class MainActivity : AppCompatActivity() {
 
         val rolledButton: Button = findViewById(R.id.btn_dice)
 
-        rolledButton.setOnClickListener { rollDice() }
+        rolledButton.setOnClickListener { rollDices() }
     }
 
-    private fun rollDice() {
+    private fun rollDices() {
         // get a reference to the button in the xml
-        val tvRoll = findViewById<TextView>(R.id.tv_dice)
+        val tvRoll1 = findViewById<TextView>(R.id.tv_dice1)
+        val tvRoll2 = findViewById<TextView>(R.id.tv_dice2)
+
         // initialize a dice object
-        val dice = Dice(6)
-        // change the text of the textView
-        tvRoll.text = dice.roll().toString()
+        val dice1 = Dice(6)
+        val dice2 = Dice(6)
+
+        // change the text of the textViews
+        tvRoll1.text = dice1.roll().toString()
+        tvRoll2.text = dice2.roll().toString()
 
         // display a message to the user
         Toast.makeText(this, "Dice Rolled!", Toast.LENGTH_LONG).show()
