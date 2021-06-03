@@ -2,7 +2,7 @@ package com.yemam.dicerolleer
 
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -17,24 +17,28 @@ class MainActivity : AppCompatActivity() {
 
         val rolledButton: Button = findViewById(R.id.btn_dice)
 
-        rolledButton.setOnClickListener { rollDices() }
+        rolledButton.setOnClickListener { rollDice() }
+
+        rollDice()
     }
 
-    private fun rollDices() {
-        // get a reference to the button in the xml
-        val tvRoll1 = findViewById<TextView>(R.id.tv_dice1)
-        val tvRoll2 = findViewById<TextView>(R.id.tv_dice2)
-
-        // initialize a dice object
-        val dice1 = Dice(6)
-        val dice2 = Dice(6)
-
-        // change the text of the textViews
-        tvRoll1.text = dice1.roll().toString()
-        tvRoll2.text = dice2.roll().toString()
+    private fun rollDice() {
+        // initialize a dice object and get the image reference
+        val dice = Dice(6)
+        val image = findViewById<ImageView>(R.id.imageView)
 
         // display a message to the user
         Toast.makeText(this, "Dice Rolled!", Toast.LENGTH_LONG).show()
+
+        val imageDrawable = when(dice.roll()){
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+        image.setImageResource(imageDrawable)
     }
 }
 
